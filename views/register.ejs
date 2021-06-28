@@ -1,0 +1,66 @@
+<%-include('_header');%>
+<body class="sb-hide-x">
+<div class="row ">
+    <div class="col">
+        <img src="./register.jpg" alt="" class="img-fluid">
+    </div>
+    <div class="col col-3 " >
+        <div class="logo my-5">
+            <a href="/" class="mx-auto">
+                <img class="mx-auto" src="/pif.png" height="140">
+            </a>
+        </div>
+        <div class="py-5 px-2">
+
+            <div id="register-err" class="container mb-2" hidden>
+                <div class="card  mx-auto border-danger bg-danger">
+                    <div class="card-body">
+                        <span class="text-light " id="register-txt"></span>
+                    </div>
+                </div>
+            </div>
+            <form class="container" onsubmit="register(); return false;">
+                <!-- error -->
+                
+                <div class=" fs-3">
+                    Register
+                </div>
+                <div class="form-group my-3">
+                    <label for="register-first">First Name</label>
+                    <input type="text" id="register-first" class="form-control">
+                </div>
+                <div class="form-group my-3">
+                    <label for="register-last">Last Name</label>
+                    <input type="text" id="register-last" class="form-control">
+                </div>
+                <div class="form-group my-3">
+                    <label for="register-email">Email</label>
+                    <input type="text" id="register-email" class="form-control">
+                </div>
+                <div class="form-group my-3">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-control">
+                </div>
+                <div class="form-group my-3">
+                    <label for="register-confirm">Confirm Password</label>
+                    <input type="password" id="register-confirm" class="form-control">
+                </div>
+                <div class="form-check" >
+                    <input class="form-check-input" type="checkbox" value="" id="register-check">
+                    <label class="form-check-label "style="font-size:12px;" >
+                      By clicking this, you agree to our <a href=""  style="font-size:12px;">terms and services</a> .
+                    </label>
+                  </div>
+                <div class="my-3 ">
+                    <button class="btn text-light bg-violet" >
+                        Register
+                    </button>
+                    <a href="/login" class="fs-6 float-end mt-3">Click here if you already have an account.</a>
+                </div>
+
+            </form>
+        </div>
+       
+    </div>
+</div>
+<%-include('_footer');%>

@@ -1,0 +1,41 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+<body>
+
+<section class="add mt-5 py-5">
+    <div class="container">
+        <form enctype="multipart/form-data" onsubmit="addForward(); return false;" id="add-form">
+            <div class="card w-50 mx-auto shadow">
+                <div class="card-body">
+                    <div class="fs-3">
+                        Describe your Forward
+                    </div>
+                    <div class="form-floating my-2">
+                        <input type="text" class="form-control border-light shadow-sm" id="add-title" placeholder="Title" required>
+                        <label for="add-title" class="text-muted">Name of your Forward</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="text-muted">Upload your forward image</label>
+                        <input class="form-control border-light shadow-sm" type="file" id="add-image">
+                    </div>
+                    <div class="form-group mb-3 my-2">
+                        <select class="form-select my-2 border-light shadow-sm text-muted" id="add-type" required>
+                            <option value="" > Choose what type your forward is</option>
+                            <% data.forEach(async(reference)=>{%>
+                                <option value="<%=reference.Reference_Type%>" ><%=reference.Reference_Type.replace(/\w/, c => c.toUpperCase())%></option>
+                            <%})%>
+                        </select>
+                    </div>
+                    <div class="form-floating my-2">
+                        <textarea type="text" class="form-control border-light shadow-sm" id="add-desc" placeholder="Description" required></textarea>
+                        <label for="add-desc" class="text-muted">Tell us your Story</label>
+                    </div>
+                   
+                    <input type="submit" value="Proceed" class="btn float-end">
+                </div>
+            </div>
+        </form>
+    </div>  
+</section>
+
+<%-include('_footer')%>

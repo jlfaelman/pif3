@@ -1,0 +1,27 @@
+<nav class="navbar navbar-dark transparent fixed-top" id="navbar-nav" >
+    <div class="container">
+        <a class="navbar-brand fs-6 fw-bold" href="/">
+            <img src="/pif.png" height="70" width="200" class="rounded">
+        </a>
+
+        <div class="float-end" id="navbar-signin">
+            <a href="/login" class="btn bg-darkblue btn-sm text-light ">
+                Sign In / Sign Up
+            </a>
+        </div>
+
+
+        <div class="float-end" id="navbar-logged">
+            <div class="dropdown">
+                <button class="btn bg-darkblue text-light btn-sm dropdown-toggle" type="button" id="navbar-name" data-bs-toggle="dropdown" aria-expanded="false">
+                 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><button class="dropdown-item" onclick="viewFundraisers();">View Fundraisers</button></li>
+                  <li><button class="dropdown-item" onclick="viewForwards();" >View Forwards</button></li>
+                  <li><button class="dropdown-item" onclick="logout();">Logout</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>`
+</nav>

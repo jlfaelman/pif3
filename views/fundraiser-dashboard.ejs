@@ -1,0 +1,44 @@
+<%-include('_header'); %>
+<%-include('_navbar'); %>
+<section class="my-5 py-5">
+    <div class="container">
+        <div class="row border-bottom">
+            <div class="col"> 
+                <span class="fs-1">
+                    Fundraising Dashboard
+                </span>
+            </div>
+            <div class="col">
+                <span class="float-end">
+                    <a class="btn" href='/user/fundraisers/add'>Add Fundraiser</a>
+                </span>
+            </div>
+            
+        </div>
+        <div class="row">
+            <% if(!data || data === undefined){ %>
+            <% }else{ %>
+                <% data.forEach(async(fundraising)=>{ %>
+                <div class=" col-sm-12 col-md-4 col-lg-3 my-3">
+                    <div class="card border-light shadow-sm" style="width: 18rem;">
+                        <img class="card-img-top" width="250" height="200" src="<%=fundraising.Fundraiser_Image%>" alt="fundraiser_image">
+                        <div class="card-body">
+                            <div class="card-title text-truncate">
+                                <h5><%=fundraising.Fundraiser_Title%></h5>
+                            </div>
+                            <p class="card-subtitle mb-2 text-muted"><span class="mx-2"><%=fundraising.Fundraiser_Type.replace(/\w/, c => c.toUpperCase())%></span> | <span class=" mx-2"><%=fundraising.Fundraiser_Status.replace(/\w/, c => c.toUpperCase())%></span></p>
+                            <p class="card-text text-truncate"><%=fundraising.Fundraiser_Desc%></p>
+                            <a href="/user/fundraisers/settings?id=<%=fundraising.Fundraiser_ID%>" class="btn w-100">Edit
+                                Fundraiser
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
+</section>
+
+<%-include('_footer'); %>

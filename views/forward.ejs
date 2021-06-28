@@ -1,0 +1,109 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+
+<section class="search pt-5 shadow-sm bg-darkblue">
+    <div class="container">
+        <div class="d-flex flex-row  py-4">
+            <span class="fs-3 pt-5 text-light">
+                Forwards
+            </span>
+        </div>
+       <div class="d-flex flex-row justify-content-center py-4">
+
+           <div class="form-group w-50">
+               <input type="text" class="form-control form-control-sm" id="query-search">
+           </div>
+           <div class="button ">
+               <button class="btn btn-sm text-light" id="btn-fd-search" onclick="forwardsearch();">Search</button>
+           </div>
+       </div>
+    </div>
+</section>
+
+<section class=" my-4">
+    <div class="container">
+        <a class="btn my-2" href="/">
+            &laquo; Back
+        </a>
+        <div class="fs-3 mb-3">
+            Trending Forwards
+        </div>
+        <div class="row">
+            <% if(data.length <= 0 || data == undefined){ %>
+                <div class="container">
+                    <div class="my-5">
+                        <div class="text-muted fs-4 w-25 mx-auto">
+                            No Forwards to show!
+                        </div>
+                    </div>
+                </div>
+            <% }else{ %>
+
+            <% data.forEach(async(forward)=>{%>
+               
+            <div class="col-lg-3 col-md-5 col-xs-12 my-3">
+                <div class="card border-light shadow-sm  mx-auto" style="width: 18rem;">
+                    <img class="card-img-top"  width="250" height="200" src="<%=forward.Forward_Image%>" alt="forward_image">
+                    <div class="card-body">
+                      <h5 class="card-title text-truncate"><%=forward.Forward_Title.replace(/\w/, c => c.toUpperCase()) %></h5>
+                      <p class="card-subtitle mb-2 text-muted"><%=forward.Forward_Type.replace(/\w/, c => c.toUpperCase()) %></p>
+                      <p class="card-text text-truncate"><%=forward.Forward_Desc.replace(/\w/, c => c.toUpperCase()) %></p>
+                      <a href="/forward/page?id=<%=forward.Forward_ID %>" class="btn text-light bg-violet w-100">View Forward</a>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <% }) %>
+            <% } %>
+        
+    </div>
+</section>
+
+<section class=" py-5 my-5">
+    <div class="container">
+        <div class="fs-3 mb-3">
+          Category
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="/forward/search?query=education" class="btn btn-category d-flex flex-column justify-content-center">
+                    <div class="material-icons md-30">eco</div>
+                    <h6>Education</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/forward/search?query=burial" class="btn btn-category d-flex flex-column justify-content-center">
+                    <span class="material-icons md-30">local_hospital</span>
+                    <h6>Burial</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/forward/search?query=calamities" class="btn btn-category d-flex flex-column justify-content-center">
+                    <div class="material-icons md-30">warning</div>
+                    <h6>Calamities</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/forward/search?query=medical" class="btn btn-category d-flex flex-column justify-content-center">
+                    <span class="material-icons md-30">medical_services</span>
+                    <h6>Medical</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/forward/search?query=animal care" class="btn btn-category d-flex flex-column justify-content-center">
+                    <div class="material-icons md-30">pets</div>
+                    <h6>Animal Care</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/forward/search?query=sports" class="btn btn-category d-flex flex-column justify-content-center">
+                    <div class="material-icons md-30">sports_esports</div>
+                    <h6>Sports</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+<%-include('_footer')%>

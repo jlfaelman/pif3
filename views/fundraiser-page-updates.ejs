@@ -1,0 +1,32 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+    <section class="mt-5 pt-5">
+        <div class="container">
+            <button class="btn " onclick="back();">
+                &laquo; Back
+            </button>
+        </div>
+    </section>
+
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <% data.forEach((update)=>{%>
+                <div class="card my-2 shadow-sm">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="text-muted">
+                                <%=moment(update.created_At).format('MMMM DD, YYYY')%>
+                            </div>
+                            <p class="text-break">
+                                <%=update.Update_Desc%>
+                            </p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <% })%>
+            </div>
+        </div>
+    </section>
+<%-include('_footer')%>

@@ -1,0 +1,65 @@
+<%-include('_header');%>
+<%-include('_navbar');%>
+
+<body class="sb-hide-x">
+    <section class=" my-5 py-5">
+        <div class="container">
+            <form class="card mx-auto w-50 shadow-sm border-light" onsubmit="withdraw('<%=data.Fundraiser_ID%>','<%=data.Funding_ID%>');return false;">
+                <div class="card-body">
+                    <div class="row">
+                        <span class="fs-3">Withdrawal</span>
+                        <div class="my-2 border-top">
+                            Amount: $
+                            <span class="fs-2" id="withdraw-amount">
+                                <%=data.Funding_Received%>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-floating my-2 ">
+                            <input type="text" class="form-control border-light shadow-sm" id='withdraw-receiver' placeholder="johndoe@email.com">
+                            <label for="withdraw-receiver" class='form-check-label text-muted mx-2 '>
+                                Paypal Account
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card w-75 mx-auto shadow-sm border-light ">
+                            <div class="card-body">
+                                <p class="text-muted">
+                                    To verify withdrawal, you must input your Pay It Forward&trade; account credentials to ensure the user's identity.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row" >
+                            <div class="form-floating my-2">
+                                <input type="text" class="form-control border-light shadow-sm" id='withdraw-email' placeholder="johndoe@email.com" required>
+                                <label for="withdraw-email" class='form-check-label mx-2 text-muted'>
+                                    PayitForward Email
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="form-floating my-2">
+                                <input type="password" class="form-control border-light shadow-sm" id='withdraw-password' placeholder="asd">
+                                <label for="withdraw-password" class='form-check-label mx-2 text-muted'>
+                                    PayitForward Password
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                   
+                    <input type="submit" value="Proceed" class="btn w-100">
+                </div>
+
+
+            </form>
+        </div>
+    </section>
+
+
+<%-include('_footer');%>

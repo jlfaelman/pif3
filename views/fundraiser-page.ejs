@@ -1,0 +1,289 @@
+<%-include('_header') %>
+<%-include('_navbar') %>
+
+<body class="py-5" >
+    <%if(success != undefined){%>
+
+    <section class="container " id='donate-success'>
+        <div class="card border-success mt-5">
+            <div class="card-body">
+                <span class="text-success">
+                    Thank you for your donation!
+                </span>
+                <button type="button" class="btn-close float-end" onclick="dismiss();" aria-label="Close">
+                </button>
+            </div>
+        </div>
+    </section>
+    <%}%>
+    <section class=" pt-3">
+        <div class="container">
+            <a class="btn mt-3" href="/fundraiser">
+                &laquo; Back
+            </a>
+        </div>
+    </section>
+
+    <section class="mb-3">
+        <div class="container">
+            <span class="display-5"> 
+                <%= fundraiser.Fundraiser_Title.replace(/\w/, c => c.toUpperCase()) %>
+            </span>
+        </div>
+    </section>
+    <section class="mb-3">
+        <div class="container ">
+            <div class="d-flex flex-row justify-content-between">
+                <div>
+                    <span class="icon" style="padding-right: 10px;">
+                        <i class="fas fa-id-card fa-lg"></i>
+                    </span>
+                    By:
+                    <span class="fs-5 ">
+                        <%= user.User_First.replace(/\w/, c => c.toUpperCase())%>
+                        <%= user.User_Last.replace(/\w/, c => c.toUpperCase())%>
+                    </span>
+                </div>
+
+                <div class="pl-5">
+                    <span class="px-2">
+                        <i class="fas fa-tag"></i>
+                        <%= fundraiser.Fundraiser_Type.replace(/\w/, c => c.toUpperCase())%>
+                    </span>
+                    |
+                    <span class="px-2">
+                        <div class="fas fa-calendar"></div>
+                        <%= moment(fundraiser.created_At.replace(/\w/, c => c.toUpperCase())).format('MMMM DD, YYYY') %>
+                    </span>
+                    |
+                    <span class="px-2">
+                        <i class="fas fa-info"></i>
+                        <%=fundraiser.Fundraiser_Status.replace(/\w/, c => c.toUpperCase()) %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="row">
+            <div class="col-7">
+                <img src="<%=fundraiser.Fundraiser_Image%>" alt="" class="rounded " width="700" height="500">
+            </div>
+
+            <div class="col">
+                <div class="card border-light shadow-sm ">
+                    <div class="card-body ">
+
+                        <div class="container">
+                            Share on:
+                        </div>
+                        <div class="d-flex flex-row justify-content-between border-bottom my-3 p-2">
+                            <a class="btn" target="_blank" rel="noopener noreferrer"
+                                href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/fundraiser/page?id=<%=fundraiser.Fundraiser_ID%>">
+                                <div class="d-flex flex-column">
+                                    <span class="material-icons ">
+                                        facebook
+                                    </span>
+                                    <span class="">
+                                        Facebook
+                                    </span>
+                                </div>
+                            </a>
+                            <a class="btn" target="_blank" rel="noopener noreferrer"
+                                href="https://twitter.com/intent/tweet?url=http://localhost:3000/fundraiser/page?id=<%=fundraiser.Fundraiser_ID%>&text=<%=fundraiser.Fundraiser_Title%>">
+                                <div class="d-flex flex-column">
+                                    <i class="fa fa-twitter fa-lg"></i>
+                                    <span class="">
+                                        Twitter
+                                    </span>
+                                </div>
+                            </a>
+                            <a class="btn" target="_blank" rel="noopener noreferrer"
+                                href="https://pinterest.com/pin/create/button/?url=http://localhost:3000/fundraiser/page?id=id=<%=fundraiser.Fundraiser_ID%>&media=&description=<%=fundraiser.Fundraiser_Title%>">
+                                <div class="d-flex flex-column">
+                                    <i class="fa fa-pinterest fa-lg"></i>
+                                    <span class="">
+                                        Pinterest
+                                    </span>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="d-flex flex-row justify-content-evenly py-3 mt-3">
+                            <span class="fs-3">Latest Donation</span>
+                            <button class="btn float-end bg-blue text-light" >See History</button>
+                        </div>
+                        <%if(history){%>
+                            <% history.forEach(async(data)=>{%>
+                            <div class="card border-light my-2 shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex flex-row">
+                                        <div class="icom">
+                                            <i class="fas fa-user-circle fa-2x pt-2 px-2" ></i>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <div class="card-title ">
+                                                <%if(data.is_Anonymous == true){%>
+                                                    John Doe
+                                                <%}else{%>
+                                                    Anonymous
+                                                <%}%>
+                                                donated <span class="fs-5"><%=data.Donation_Amount%> Php</span> 
+                                            </div>
+                                            <div class="card-subtitle text-muted">
+                                                <%=moment(data.created_At).format(`MMMM DD, YYYY`)%>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="card-title ">
+                                        
+                                        <%if(data.is_Anonymous == true){%>
+                                            John Doe
+                                        <%}else{%>
+                                            Anonymous
+                                        <%}%>
+                                         donated <span class="fs-5"><%=data.Donation_Amount%> Php</span> 
+                                         <div class="card-subtitle text-muted">
+                                            <%=moment(data.created_At).format(`MMMM DD, YYYY`)%>
+                                         </div>
+                                    </div> -->
+                                    
+                                </div>
+                            </div>
+                            <%})%>
+                        <%}else{%>
+
+                        <%}%>
+                        
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="my-4  ">
+        <div class="container">
+            <div class="">
+                <% if(funding != undefined){%>
+                    <% if(fundraiser.Fundraiser_Status == 'approved' ){%>
+                    <a href="/fundraiser/page/donate?id=<%=fundraiser.Fundraiser_ID%>&fund=<%=funding.Funding_ID%>&method=financial&name=<%=fundraiser.Fundraiser_Title%>&" class="btn w-50 mx-5 bg-blue text-light mb-5 shadow" >
+                        Donate
+                    </a>
+                    <% }else{%>
+                    <div class="card border-warning w-50 mx-5 my-3 p-2 text-muted">
+                        Fundraising is still being checked and verified by admin.
+                    </div>
+                    <button type="button" class="btn w-50 mx-5 border-light shadow mb-5 disabled" data-bs-toggle="modal"
+                        alt="Donation is not active" data-bs-target="#donateModal" disabled>
+                        Donate
+                    </button>
+                    <% }%>
+                <% }else{%>
+                <div class="card border-warning w-50 mx-5 my-3 p-2 text-muted">
+                    Fundraiser did not set donation method yet.
+                </div>
+                <button type="button" class="btn w-50 mx-5 border-light shadow mb-5 disabled" data-bs-toggle="modal"
+                    alt="" data-bs-target="#donateModal" disabled>
+                    Donate
+                </button>
+                <% }%>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="my-5    ">
+        <div class="border-bottom my-3 mx-auto w-75">
+            <span class="fs-2">
+                Story
+            </span>
+        </div>
+        <div class="container">
+            <p class="fs-5" style="white-space: pre-line">
+                <%=fundraiser.Fundraiser_Desc %>
+            </p>
+        </div>
+
+    </section>
+
+    <% if(update == undefined){ %>
+    <div class="border-bottom w-75 my-3  mx-auto">
+        <span class="fs-2">
+            Update
+        </span>
+    </div>
+    <section class="container">
+        <div class="my-5">
+            <div class="text-muted fs-4 w-25 mx-auto">
+                No updates to show!
+            </div>
+        </div>
+    </section>
+    <% }else { %>
+    <div class="border-bottom w-75 my-3 mx-auto"></div>
+    <section class="my-4 pb-5">
+        <div class="container">
+            <div class="">
+                <span class="fs-3">Latest Update</span>
+                <a href="/fundraiser/page/updates?id=<%=fundraiser.Fundraiser_ID%>" class="btn float-end"> View Updates</a>
+            </div>
+            <div class="text-muted mt-3 w-75 mx-auto">
+                <%=moment(update.created_At).format(`MMMM DD, YYYY`)%>
+            </div>
+            <p class="text-break w-75 mx-auto">
+                <%=update.Update_Desc%>
+            </p>
+        </div>
+    </section>
+    <% } %>
+
+
+    <div class="border-bottom w-75 my-3 mx-auto"></div>
+
+
+    <section class="my-4 pb-5">
+        <div class="container">
+            <div class="fs-3 mt-3">
+                Comments
+            </div>
+            <% if(comments.length != 0){%>
+            <!-- comments -->
+            <% comments.forEach((comment)=>{%>
+            <div class="mb-3 px-4 py-3 border-bottom    ">
+                <div class="d-flex flex-row">
+                    <div class="material-icons md-20">account_circle</div>
+                    <div class="d-flex flex-column">
+                        <% if(comment.is_Anonymous == true){%>
+                        <div class="my-2 fs-5 mx-2 ">Anonymous</div>
+                        <% }else{%>
+                        <div class="my-2 fs-5 mx-2 "><%= comment.Comment_User%></div>
+                        <% }%>
+                        <div class="card-subtitle p-2">
+                            <span class="text-break">
+                                <%= comment.Comment_Desc %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+            <%}else{%>
+            <section class="container">
+                <div class="my-5">
+                    <div class="text-muted fs-4 w-25 mx-auto">
+                        No comments to show!
+                    </div>
+                </div>
+            </section>
+            <%}%>
+    </section>
+
+
+    <!-- financial Modal -->
+
+        <!-- courier Modal -->
+
+        <%-include('_footer') %>

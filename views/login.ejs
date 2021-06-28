@@ -1,0 +1,106 @@
+<%-include('_header');%>
+
+<body class="sb-hide-x">
+
+
+    <div class="row ">
+        <div class="col">
+            <img src="./login.jpg" alt="" class="img-fluid o-50">
+        </div>
+        <div class="col col-3 ">
+            <div class="logo my-5">
+                <a href="/" class="mx-auto">
+                    <img class="mx-auto" src="/pif.png" height="140">
+                </a>
+            </div>
+            <div class="py-5 px-2">
+                <!-- donation error -->
+                <% if(error==1){%>
+                <div class="container" >
+                    <div class="card  mx-auto border-danger bg-danger">
+                        <div class="card-body">
+                            <div class="align-middle">
+                                <i class="material-icons text-light">
+                                    info
+                                </i> 
+                                <span class="text-light " id="login-txt">
+                                    You have to be logged in first to donate!
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <!-- register success -->
+                <% if(success){%>
+                <div class="container" >
+                    <div class="card  mx-auto border-success bg-success">
+                        <div class="card-body">
+                            <div class="align-middle">
+                                <i class="material-icons text-light">
+                                    info
+                                </i> 
+                                <span class="text-light " id="login-txt">
+                                   Account Registered Successfully
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <!-- verified success -->
+                <% if(verified){%>
+                <div class="container" >
+                    <div class="card  mx-auto border-success bg-success">
+                        <div class="card-body">
+                            <div class="align-middle">
+                                <i class="material-icons text-light">
+                                    info
+                                </i> 
+                                <span class="text-light " id="login-txt">
+                                   Account Verified Successfully
+                                </span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <!-- error -->
+                <div id="login-err" class="container" hidden>
+                    <div class="card  mx-auto border-danger bg-danger">
+                        <div class="card-body">
+                            <!-- <span class="material-icons text-light">
+                                info
+                            </span> -->
+                            <span class="text-light " id="login-txt"></span>
+                        </div>
+                    </div>
+                </div>
+                <form action="" id="login-form" onsubmit="login(); return false;">
+                <div  class="container" >
+                    <div class=" fs-3">
+                        Login
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="login-email">Email</label>
+                        <input type="text" id="login-email" class="form-control">
+                    </div>
+                    <div class="form-group  my-3">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control">
+                    </div>
+                    <div class="my-3 ">
+                        <input class="btn text-light bg-violet" id="login-btn" value="Log In" type="submit">
+                        <a href="/register" class="float-end mt-3">Don't have an account? Click here.</a>
+                    </div>
+                </div>
+            </form>
+
+            </div>
+
+        </div>
+    </div>
+    <%-include('_footer');%>

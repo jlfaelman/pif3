@@ -1,0 +1,50 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+
+<section class="search pt-5 shadow-sm bg-darkblue">
+    <div class="container">
+        <div class="fs-3 pt-5 text-light">
+            search result for: "<%=query%>"
+        </div>
+       <div class="d-flex flex-row justify-content-center py-4">
+       
+           <div class="form-group w-50">
+               <input type="text" class="form-control form-control-sm" id="query-search">
+           </div>
+           <div class="button ">
+               <button class="btn btn-sm text-light" id="btn-fd-search" onclick="search();">Search</button>
+           </div>
+       </div>
+    </div>
+</section>
+
+<section class="fd my-4">
+    <div class="container">
+        <a class="btn my-2" href="/forward">
+            &laquo; Back
+        </a>
+        <div class="row">
+            <% if(!data || data == undefined){ %>
+                0 Result Found
+            <% }else{ %>
+            <% data.forEach(async(forward)=>{%>
+            <div class="col-3 my-3">
+                <!-- card -->
+                <div class="card border-light shadow-sm" style="width: 18rem;">
+                    <img class="card-img-top"  width="250" height="200" src="<%=forward.Forward_Image %>" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=forward.Forward_Title %></h5>
+                      <p class="card-subtitle mb-2 text-muted"><%=forward.Forward_Type.replace(/\w/, c => c.toUpperCase()) %></p>
+                      <p class="card-text text-truncate"><%=forward.Forward_Desc %></p>
+                      <a href="/forward/page?id=<%=forward.Forward_ID %>" class="btn w-100">View Forward</a>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+
+<%-include('_footer')%>

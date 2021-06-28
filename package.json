@@ -1,0 +1,26 @@
+{
+  "name": "PIF3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@adyen/api-library": "^8.1.0",
+    "@paypal/payouts-sdk": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.7",
+    "paymongo": "^1.1.0",
+    "paypal-rest-sdk": "^1.8.1",
+    "xendit-node": "^1.12.0"
+  }
+}

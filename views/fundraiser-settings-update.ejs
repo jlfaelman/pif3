@@ -1,0 +1,61 @@
+<%-include('_header');%>
+<%-include('_navbar');%>
+
+<section class="mt-5 pt-5">
+    <div class="container">
+        <button class="btn " onclick="back();">
+            &laquo; Back
+        </button>
+    </div>
+</section>
+
+<section class="mt-2">
+    <div class="container">
+        <div class="border-bottom pb-3">
+            <span class="fs-3">
+                Updates
+            </span>
+            <button type="button" class="btn float-end" data-bs-toggle="modal" data-bs-target="#updateModal">
+                Add Update
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="mt-2">
+    <div class="container">
+        <%data.forEach((update)=>{%>
+            
+            <div class="row border-bottom py-4 w-75 mx-auto">
+                <p style="white-space: pre-line"><%=update.Update_Desc%></p>
+                <span class="text-muted"><%=moment(update.created_At).format('MMMM DD, YYYY')%></span>
+            </div>
+            <div class="text-muted">
+                
+            </div>
+        <%})%>
+    </div>
+</section>
+
+
+
+
+
+<!-- UpdateModal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="border-bottom pb-2" >
+                <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                <span class="fs-5 mt-3">
+                    Add Update
+                </span>
+            </div>
+            <textarea class="form-control my-2" id="user-update"></textarea>
+            <button class="btn" onclick="addUpdate();">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<%-include('_footer');%>

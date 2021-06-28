@@ -1,0 +1,35 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+
+<% data.forEach((donation)=>{%>
+<section class="my-5 py-5">
+    <form class="container" onsubmit="addComment(); return false;">
+        <div class="card border-success shadow-sm w-50 mx-auto">
+            <div class="card-body">
+                <span class="fs-5 text-success">
+                    Donation Success
+                </span>
+            </div>
+            
+        </div>
+        <div class="card my-2 w-50 mx-auto">
+            <div class="card-body">
+                <div class="form-group my-2"> 
+                    <label for="donate-value" class="mb-2">Send your regards to the fundraisers!</label>    
+                    <textarea  id="donate-comment" class="form-control" placeholder="Leave Blank if you have no comment" ></textarea>
+                    
+                </div>
+                <div class="">
+                    <input type="hidden" name="asd">
+                </div>
+                <div class=" ">
+                    <input class="btn w-100 align-bottom mt-3" type="submit" value="Submit Comment">
+                </div>
+            </div>
+
+        </div>
+    </form>
+    
+</section>
+<% }) %>
+<%-include('_footer')%>

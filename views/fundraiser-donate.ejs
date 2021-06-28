@@ -1,0 +1,122 @@
+<%-include('_header');%>
+<%-include('_navbar');%>
+<section class="py-5 my-5 container">
+    <div class="back">
+        <div class="container">
+            <a class="btn " href="/fundraiser/page?id=<%=funding.Fundraiser_ID%>">
+                &laquo; Back
+            </a>
+        </div>
+    </div>
+
+    <div class="d-flex flex-md-row flex-column justify-content-center">
+        <% if(funding.paypal_Disabled == true){%>
+        <div class="">
+            <form class="card my-5  p-2 shadow-sm mx-auto" method="get" id='donate-form'
+                onsubmit=" donate(); return false;">
+                <div class="card-body">
+                    <div class="title">
+                        <div class="my-2">Donate For: <span class=" px-2 fs-3" id="donate-name"><%=name%></span></div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <span class="mt-2">Payment Method</span>
+                        <div class="d-flex flex-row justify-content-between my-2">
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" name="donate-platform">
+                                    <img src="/paypal.png" alt="" height="100" width="100" class=" img-fluid">
+                                </label>
+                                <input class="form-check-input mt-4" type="radio" name="donate-platform"
+                                    id="donate-paypal" value="paypal" checked>
+                                </div>
+                                <!-- <div class="form-check form-check-inline">
+                                    <label class="form-check-label" name="donate-platform">
+                                        <img src="/paymaya.png" alt="" height="150" width="150" class=" img-fluid">
+                                    </label>
+                                    <input class="form-check-input mt-4" type="radio" name="donate-platform"
+                                        id="donate-paymaya" value="paymaya" disabled>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" name="donate-platform">
+                                        <img src="/gcash.png" alt="" height="130" width="140" class=" img-fluid">
+                                    </label>
+                                    <input class="form-check-input mt-4" type="radio" name="donate-platform"
+                                        id="donate-gcash" value="gcash" disabled>
+                                </div> -->
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="number" class="form-control form-control-sm " id="donate-amount"
+                                placeholder="Amount" required style="border: 0 !important;">
+                            <label for="donate-value" class="text-muted">Donation Amount</label>
+                        </div>
+                        <div class="form-group my-2">
+                            <label for="donate-currency">Currency: </label>
+                            <select class="form-select form-select-sm" id="donate-currency">
+                                <option value="USD">US Dollar(USD)</option>
+                                <option value="PHP">Philippine Peso(PHP)</option>
+                            </select>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="donate-anonymous">
+                            <label class="form-check-label" for="donate-anonymous">
+                                Appear as anonymous?
+                            </label>
+                        </div>
+                        <div class="card shadow-sm border-light mx-auto">
+                            <div class="card-body text-muted my-1">
+                                By proceeding to payment, you agree to our terms and condition
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        <input class="btn w-100 align-bottom mt-3" type="submit" value="Proceed to Payment">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <% }%>
+
+        <% if(gcash != undefined){%>
+        <div class="gcash mx-2">
+            <div class="card mx-auto my-5 p-3" style="height: 510px !important;">
+                <div class="card p-3">
+                    <span class="text-break">
+                        Or scan GCash QR code
+                        to directly donate to the fundraiser
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="card-image">
+                        <div class="d-flex flex-row justify-content-center">
+                            <img src="<%=gcash.Gcash_QR%>" alt="gcash_qr" class="mx-auto " width="300"height="350">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% }%>
+
+        <% if(paymaya != undefined){%>
+        <div class="gcash mx-2">
+            <div class="card  mx-auto my-5 p-3" style="height: 510px !important;">
+                <div class="card p-3">
+                    <span class="text-break">
+                        Or scan PayMaya QR code
+                        to directly donate to the fundraiser
+                    </span>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-center">
+                        <div class="card-image">
+                            <img src="<%=paymaya.Paymaya_QR%>" alt="paymaya_qr" class="mx-auto" width="300"height="350">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <% }%>
+    </div>
+</section>
+<%-include('_footer');%>

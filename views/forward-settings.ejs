@@ -1,0 +1,161 @@
+<%-include('_header')%>
+<%-include('_navbar')%>
+<section class="my-5 py-5">
+    <div class="container">
+        <%if(success != undefined){%>
+
+        <section class="container " id='donate-success'>
+            <div class="card border-success mt-5">
+                <div class="card-body">
+                    <span class="text-success">
+                        Withdrawal for fundraiser successful!
+                    </span>
+                    <button type="button" class="btn-close float-end" onclick="dismiss();" aria-label="Close">
+                    </button>
+                </div>
+            </div>
+        </section>
+        <%}%>
+        <div class="row mb-2">
+            <div class="col">
+                <span class="">
+                    <a class="btn  mx-2" href="/user/forwards?id=<%=user.User_ID%>">
+        &laquo; Back
+        </a>
+        </span>
+        <span class="float-end">
+            <button class="btn mx-2" data-bs-toggle="modal" data-bs-target="#edit-modal">
+                Edit
+            </button>
+        </span>
+        <span class="float-end">
+            <span class="float-end">
+                <a href="/user/forwards/updates?id=<%=data.Forward_ID%>" class="btn">View Updates</a>
+            </span>
+        </span>
+
+        <% if(goods != undefined){%>
+        <a class="btn float-end " id='fund-withdraw'
+            href='/user/forwards/settings/withdraw?fund=<%=goods.Funding_ID%>'>
+            Withdraw
+        </a>
+        <%}%>
+            </div>
+        </div>
+        <div class="d-flex flex-sm-row flex-column ">
+            <div class="">
+                <img src="<%=data.Forward_Image%> " width="700" height="500" alt="" class="rounded ">
+    </div>
+    <div class="col">
+        <div class="m-2 px-3">
+            <div class="form-floating">
+                <input type="text" class="form-control border-light shadow-sm" id="settings-title"
+                    value="<%=data.Forward_Title%>" placeholder="Project Title" disabled>
+                <label for="settings-title">Title</label>
+            </div>
+            <div class="form-group my-3 w-100">
+                <label for="settings-description">Description</label>
+                <textarea id="settings-description" class="form-control border-light shadow-sm"
+                    placeholder="Lorem Ipsum" disabled><%=data.Forward_Desc%></textarea>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Update -->
+
+
+
+
+
+    <!-- Fundraising Settings -->
+    <div class="border-bottom pb-2 mt-2">
+        <span class="fs-3">Forward Settings</span>
+    </div>
+    <!-- Enable Comments -->
+    <div class="row">
+        <div class="col">
+            <div class="p-4 w-75 mx-auto border-bottom ">
+                <div class="form-check">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Enable Comments
+                    </label>
+                    <%if(data.Allow_Comments == false){%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'>
+                    <%}else{%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'
+                        checked>
+                    <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Allow Donations -->
+        <div class="row">
+            <div class="col">
+                <div class="p-4 w-75 mx-auto border-bottom ">
+                    <div class="form-check">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Allow Donations 
+                        </label>
+                        <%if(data.Allow_Donation == false){%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'>
+                    <%}else{%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'
+                        checked>
+                    <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Allow Forward to be searched -->
+        <div class="row">
+            <div class="col">
+                <div class="p-4 w-75 mx-auto border-bottom ">
+                    <div class="form-check">
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Allow Forward to be searched 
+                        </label>
+                        <%if(data.Allow_Search == false){%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'>
+                    <%}else{%>
+                    <input class="form-check-input float-end" type="checkbox" id="checkbox-settings" value='true'
+                        checked>
+                    <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- edit modal -->
+<div class="modal fade" id="edit-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="form-floating">
+            <div class="form-floating">
+                <input type="text" class="form-control border-light shadow-sm" id="edit-title"
+                    value="<%=data.Forward_Title%>" placeholder="Project Title">
+                <label for="settings-title">Title</label>
+            </div>
+            <div class="form-group my-3 w-100">
+                <label for="settings-description">Description</label>
+                <textarea id="edit-description" class="form-control border-light shadow-sm"
+                    placeholder="Lorem Ipsum" ><%=data.Forward_Desc%></textarea>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="editForward();">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<%-include('_footer')%>

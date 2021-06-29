@@ -22,7 +22,8 @@ router.get('/verify', async (req, res) => {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
-        if (response.message) {
+        const verify = await response.json();
+        if (verify.message) {
             res.redirect('/login?verified=1')
         }
     } catch (e) {

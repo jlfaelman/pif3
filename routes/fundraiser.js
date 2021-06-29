@@ -10,7 +10,7 @@ router.use(express.static("assets"));
 router.get('/', async (req, res) => {
 
     try {
-        const response = await fetch(process.env.DB + 'fundraising/',
+        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/`,
             {
                 method: 'GET',
                 headers: {
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 router.get('/search', async (req, res) => {
     try {
         const query = req.query.query;
-        const search = await fetch(process.env.DB + 'fundraising/search/' + query, {
+        const search = await fetch(`${process.env.DATABASE_URL}/fundraising/search/${query}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -48,13 +48,13 @@ router.get('/search', async (req, res) => {
 // fundraising page
 router.get('/page', async (req, res) => {
         try {
-            const page = await fetch(process.env.DB + 'fundraising/page/' + req.query.id, {
+            const page = await fetch(`${process.env.DATABASE_URL}/fundraising/page/${req.query.id}` , {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
         })
-            const history = await fetch(process.env.DB + 'fundraising/history/' + req.query.id, {
+            const history = await fetch(`${process.env.DATABASE_URL}/fundraising/history/${req.query.id}` , {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -89,7 +89,7 @@ router.get('/page', async (req, res) => {
 });
 router.get('/page/updates', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'update/' + req.query.id,            //<-Change to DB
+        const response = await fetch(`${process.env.DATABASE_URL}/update/${req.query.id}` ,            //<-Change to DB
             {
                 method: 'GET',
                 headers: {
@@ -109,14 +109,14 @@ router.get('/page/donate', async (req, res) => {
         const fund = req.query.fund;
         const name = req.query.name;
 
-        const getFunding = await fetch(process.env.DB + 'fundraising/get/funding/' + fund, {
+        const getFunding = await fetch(`${process.env.DATABASE_URL}/fundraising/get/funding/${fund}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
         })
         const funding = await getFunding.json();
-        const getQR = await fetch(process.env.DB + 'fundraising/get/qr/' + fund, {
+        const getQR = await fetch(`${process.env.DATABASE_URL}/fundraising/get/qr/${fund}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -145,7 +145,7 @@ router.get('/page/donate', async (req, res) => {
 router.get('/page/donate/goods', async (req, res) => {
     try{
         const id = req.query.id;
-        const getGoods = await fetch(process.env.DB + 'goods/' + id, {
+        const getGoods = await fetch(`${process.env.DATABASE_URL}/goods/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

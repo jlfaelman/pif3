@@ -15,7 +15,7 @@ function generateID() {
 
 router.get('/verify', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'user/verify/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/user/verify/${req.query.id}` ,
             {
                 method: 'GET',
                 headers: {
@@ -31,7 +31,7 @@ router.get('/verify', async (req, res) => {
 })
 router.get('/fundraisers', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'fundraising/user/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/user/${req.query.id}`  ,
             {
                 method: 'GET',
                 headers: {
@@ -50,7 +50,7 @@ router.get('/fundraisers', async (req, res) => {
 // page settings
 router.get('/fundraisers/settings', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'fundraising/user/settings/' + req.query.id,            //<-Change to DB
+        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/user/settings/${req.query.id}`,            //<-Change to DB
             {
                 method: 'GET',
                 headers: {
@@ -84,7 +84,7 @@ router.get('/fundraisers/settings', async (req, res) => {
 router.get('/fundraisers/settings/withdraw', async (req, res) => {
     try {
         const fund = req.query.fund;
-        const getFunding = await fetch(process.env.DB + 'fundraising/get/funding/' + fund,
+        const getFunding = await fetch(`${process.env.DATABASE_URL}/fundraising/get/funding/${fund}`,
             {
                 method: 'GET',
                 headers: {
@@ -140,7 +140,7 @@ router.get('/fundraisers/settings/withdraw/confirm', async (req, res) => {
 
         }
         createPayouts();
-        const updateFunding = await fetch(process.env.DB + 'fundraising/user/withdraw/' + fund,
+        const updateFunding = await fetch(`${process.env.DATABASE_URL}/fundraising/user/withdraw/${fund}`,
             {
                 method: 'POST',
                 headers: {
@@ -156,7 +156,7 @@ router.get('/fundraisers/settings/withdraw/confirm', async (req, res) => {
 
 router.get('/fundraisers/add', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'reference/',            //<-Change to DB
+        const response = await fetch(`${process.env.DATABASE_URL}/reference/`,            //<-Change to DB
             {
                 method: 'GET',
                 headers: {
@@ -179,7 +179,7 @@ router.get('/fundraisers/add/method', async (req, res) => {
 router.get('/fundraisers/updates', async (req, res) => {
     try {
         const id = req.query.id;
-        const response = await fetch(process.env.DB + 'update/' + id,
+        const response = await fetch(`${process.env.DATABASE_URL}/update/${id}`,
             {
                 method: 'GET',
                 headers: {
@@ -212,7 +212,7 @@ router.get('/fundraisers/add/validation', async (req, res) => {
 
 router.get('/forwards', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'forward/dashboard/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
@@ -230,7 +230,7 @@ router.get('/forwards', async (req, res) => {
 // forward add 
 router.get('/forwards/add', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'reference/',            //<-Change to DB
+        const response = await fetch(`${process.env.DATABASE_URL}/reference/`,            //<-Change to DB
             {
                 method: 'GET',
                 headers: {
@@ -272,7 +272,7 @@ router.get('/forwards/add/method', async (req, res) => {
 // get updates
 router.get('/forwards/updates',async(req,res)=>{
     try {
-        const response = await fetch(process.env.DB + 'forward/update/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/forward/update/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
@@ -292,21 +292,21 @@ router.get('/forwards/updates',async(req,res)=>{
 // forward settings
 router.get('/forwards/settings', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + 'forward/dashboard/page/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
-        const getGoods = await fetch(process.env.DB + 'forward/dashboard/page/goods/' + req.query.id,
+        const getGoods = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/goods/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
-        const getValidation = await fetch(process.env.DB + 'forward/dashboard/page/validation/' + req.query.id,
+        const getValidation = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/validation/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {

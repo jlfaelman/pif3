@@ -9,7 +9,7 @@ router.use(express.static("assets"));
 //  get all
 router.get('/', async(req,res)=>{
     try {
-        const response = await fetch(process.env.DB + 'forward/',
+        const response = await fetch(`${process.env.DATABASE_URL}/forward/`,
             {
                 method: 'GET',
                 headers: {
@@ -28,14 +28,14 @@ router.get('/', async(req,res)=>{
 // get page
 router.get('/page', async(req,res)=>{
     try {
-        const response = await fetch(process.env.DB + `forward/page/${req.query.id}`,
+        const response = await fetch(`${process.env.DATABASE_URL}/forward/page/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
-        const getGoods = await fetch(process.env.DB + `forward/dashboard/page/goods/${req.query.id}`)
+        const getGoods = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/goods/${req.query.id}`)
         const forward = await response.json();
         const goods = await getGoods.json();
         console.log(goods.body[0])
@@ -55,7 +55,7 @@ router.get('/page', async(req,res)=>{
 router.get('/page/donate',async(req,res)=>{
     try {
        
-        const getGoods = await fetch(process.env.DB + `forward/dashboard/page/goods/${req.query.id}`)
+        const getGoods = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/goods/${req.query.id}`)
         const goods = await getGoods.json();
         console.log(goods)
         res.render('forward-donate', { 
@@ -70,7 +70,7 @@ router.get('/page/donate',async(req,res)=>{
 
 router.get('/forwards', async (req, res) => {
     try {
-        const response = await fetch(process.env.DB + '/user/' + req.query.id,
+        const response = await fetch(`${process.env.DATABASE_URL}/user/${req.query.id}`,
             {
                 method: 'GET',
                 headers: {
@@ -89,7 +89,7 @@ router.get('/forwards', async (req, res) => {
 router.get('/search',async(req,res)=>{
     try {
         const query = req.query.query;
-        const search = await fetch(process.env.DB + 'forward/search/' + query, {
+        const search = await fetch(`${process.env.DATABASE_URL}/forward/search/${ query}` , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

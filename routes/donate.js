@@ -1,13 +1,13 @@
 
 const express = require('express');
 const router = express.Router();
+require('dotenv').config()
 router.use(express.static("public"));
 router.use(express.static("assets"));
 const fetch = require('node-fetch');
 const Xendit = require('xendit-node');
 const paypal = require('paypal-rest-sdk');
 const {Client, Config, CheckoutAPI} = require('@adyen/api-library');
-
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
     'client_id': 'AYoKFz4ffJD3MNmpPOEW9u02b_2MD7YgGRacO6AfwaO1BPjYhXqoLzUbVqYgFw7clIPMtbJXChzxeCsv',

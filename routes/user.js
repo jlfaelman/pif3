@@ -15,7 +15,9 @@ function generateID() {
 
 router.get('/verify', async (req, res) => {
     try {
-        const response = await fetch(`${process.env.DATABASE_URL}/user/verify/${req.query.id}` ,
+        const id = req.query.id;
+        console.log(id)
+        const response = await fetch(`${process.env.DATABASE_URL}/user/verify/${id}` ,
             {
                 method: 'GET',
                 headers: {

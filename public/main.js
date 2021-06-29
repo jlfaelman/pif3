@@ -1,5 +1,5 @@
 
-
+const db_url = "https://pif3-db-postgres.herokuapp.com"
 function selectMethod() {
     const select = document.getElementById('method-select').value;
     if (select == 'financial') {
@@ -103,7 +103,7 @@ async function login() {
                         Email: email.value,
                         Pass: password.value
                     }
-                    const response = await fetch(`${process.env.DATABASE_URL}/user/login`,            //<-Change to DB
+                    const response = await fetch(`${db_url}/user/login`,            //<-Change to DB
                         {
                             method: 'POST',
                             headers: {
@@ -170,7 +170,7 @@ async function register() {
                                 Email: email.value,
                                 Pass: pass.value
                             }
-                            const response = await fetch(`${process.env.DATABASE_URL}/user/register`,            //<-Change to DB
+                            const response = await fetch(`${db_url}/user/register`,            //<-Change to DB
                                 {
                                     method: 'POST',
                                     headers: {
@@ -288,7 +288,7 @@ async function editFundraiser() {
             description: description.value,
         }
         console.log(info)
-        const response = await fetch('`${process.env.DATABASE_URL}/fundraising/edit',            //<-Change to DB
+        const response = await fetch('`${db_url}/fundraising/edit',            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -314,7 +314,7 @@ async function editForward() {
             description: description.value,
         }
         console.log(info)
-        const response = await fetch('`${process.env.DATABASE_URL}/forward/page/edit',            //<-Change to DB
+        const response = await fetch('`${db_url}/forward/page/edit',            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -354,7 +354,7 @@ async function addComment() {
                 description: comment,
                 name: name,
             }
-            const addComment = await fetch(`${process.env.DATABASE_URL}/comments/add`, {
+            const addComment = await fetch(`${db_url}/comments/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -383,7 +383,7 @@ async function addGoods() {
             address: address,
 
         }
-        const response = await fetch(`${process.env.DATABASE_URL}/forward/add/goods`,            //<-Change to DB
+        const response = await fetch(`${db_url}/forward/add/goods`,            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -426,7 +426,7 @@ async function addFunding() {
             total: '0',
             paypal: paypal
         }
-        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/add/method`,            //<-Change to DB
+        const response = await fetch(`${db_url}/fundraising/add/method`,            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -440,7 +440,7 @@ async function addFunding() {
                 const fd = new FormData;
                 fd.append('paymaya-qr', paymaya.files[0]);
                 fd.append('funding', res.body[0].Funding_ID);
-                const response = await fetch('`${process.env.DATABASE_URL}/fundraising/add/paymaya',            //<-Change to DB
+                const response = await fetch('`${db_url}/fundraising/add/paymaya',            //<-Change to DB
                     {
                         method: 'POST',
                         body: fd
@@ -451,7 +451,7 @@ async function addFunding() {
                 const fd = new FormData;
                 fd.append('gcash-qr', gcash.files[0])
                 fd.append('funding', res.body[0].Funding_ID)
-                const response = await fetch('`${process.env.DATABASE_URL}/fundraising/add/gcash',            //<-Change to DB
+                const response = await fetch('`${db_url}/fundraising/add/gcash',            //<-Change to DB
                     {
                         method: 'POST',
                         body: fd
@@ -478,7 +478,7 @@ async function addUpdate() {
         fundraiser: ID
     }
     try {
-        const response = await fetch(`${process.env.DATABASE_URL}/update/add`,
+        const response = await fetch(`${db_url}/update/add`,
             {
                 method: 'POST',
                 headers: {
@@ -513,7 +513,7 @@ async function addFundraiser() {
         image: image.files[0]
     }
     try {
-        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/add/fundraiser`,            //<-Change to DB
+        const response = await fetch(`${db_url}/fundraising/add/fundraiser`,            //<-Change to DB
             {
                 method: 'POST',
                 body: fd
@@ -545,7 +545,7 @@ async function addForward() {
     }
 
     try {
-        const response = await fetch(`${process.env.DATABASE_URL}/forward/page/add`,            //<-Change to DB
+        const response = await fetch(`${db_url}/forward/page/add`,            //<-Change to DB
             {
                 method: 'POST',
                 body: fd
@@ -570,7 +570,7 @@ async function addForwardValidation() {
         }
 
         validation.append('forward', forward)
-        const response = await fetch(`${process.env.DATABASE_URL}/forward/add/validation`,            //<-Change to DB
+        const response = await fetch(`${db_url}/forward/add/validation`,            //<-Change to DB
             {
                 method: 'POST',
                 body: validation
@@ -598,7 +598,7 @@ async function addValidation() {
         }
 
         validation.append('fundraiser', fundraiser)
-        const response = await fetch(`${process.env.DATABASE_URL}/fundraising/add/validation`,            //<-Change to DB
+        const response = await fetch(`${db_url}/fundraising/add/validation`,            //<-Change to DB
             {
                 method: 'POST',
                 body: validation

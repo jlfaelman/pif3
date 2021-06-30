@@ -19,7 +19,7 @@ paypal.configure({
 
 async function updateFunding(id, amount) {
     try {
-        const getFunding = await fetch(`http://localhost:5000/fundraising/get/funding/${id}`, {
+        const getFunding = await fetch(`${process.env.DATABASE_URL}/fundraising/get/funding/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -38,7 +38,7 @@ async function updateFunding(id, amount) {
                 received: newReceived,
                 total: newTotal
             }
-            const update = await fetch(`http://localhost:5000/fundraising/update/funding/${id}`, {
+            const update = await fetch(`${process.env.DATABASE_URL}/fundraising/update/funding/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -53,7 +53,7 @@ async function updateFunding(id, amount) {
                 received: newReceived,
                 total: newTotal
             }
-            const update = await fetch(`http://localhost:5000/fundraising/update/funding/${id}`, {
+            const update = await fetch(`${process.env.DATABASE_URL}/fundraising/update/funding/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -76,7 +76,7 @@ async function addDonate(fundID, fundraiserID, uID, type, amount, anon) {
             amount: amount,
             anonymous: anon
         }
-        const addDonate = await fetch(`http://localhost:5000/donation/donate`,            //<-Change to DB
+        const addDonate = await fetch(`${process.env.DATABASE_URL}/donation/donate`,            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -104,7 +104,7 @@ router.get('/verify', async (req, res) => {
     const anon = req.query.anonymous;
 
     if (platform == 'paypal') {
-        const successURL = `http://localhost:3000/donate/paypal/success?amount=${amount}&currency=${currency}&user=${userID}&fund=${fundingID}&fundraiser=${fundraiserID}&type=${platform}&anon=${anon}`;
+        const successURL = `${process.env.URL}/donate/paypal/success?amount=${amount}&currency=${currency}&user=${userID}&fund=${fundingID}&fundraiser=${fundraiserID}&type=${platform}&anon=${anon}`;
         const create_payment_json = {
             "intent": "sale",
             "experience_profile_id": "XP-4DFM-D9DF-RB7D-QLHV",
@@ -113,7 +113,7 @@ router.get('/verify', async (req, res) => {
             },
             "redirect_urls": {
                 "return_url": successURL,
-                "cancel_url": "http://localhost:3000/donate/cancel"
+                "cancel_url": "${process.env.URL}/donate/cancel"
             },
             "transactions": [{
                 "item_list": {
@@ -252,7 +252,7 @@ router.get('/paypal/success', async (req, res) => {
 router.get('/comment', async (req, res) => {
     try {
         const donation = req.query.id;
-        const getDonation = await fetch(`http://localhost:5000/donation/${donation}`,            //<-Change to DB
+        const getDonation = await fetch(`${process.env.DATABASE_URL}/donation/${donation}`,            //<-Change to DB
             {
                 method: 'GET',
                 headers: {

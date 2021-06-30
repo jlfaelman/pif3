@@ -1,6 +1,19 @@
 <%-include('_header'); %>
 <%-include('_navbar'); %>
 <section class="my-5 py-5">
+    <% if(verified == false){%>
+        <section class="container " id='donate-success'>
+            <div class="card border-danger ">
+                <div class="card-body">
+                    <span class="text-danger">
+                        Your account needs to be verified to create fundraiser!
+                    </span>
+                    <button type="button" class="btn-close float-end" onclick="dismiss();" aria-label="Close">
+                    </button>
+                </div>
+            </div>
+        </section>
+        <%}%>
     <div class="container">
         <div class="row border-bottom">
             <div class="col"> 
@@ -9,9 +22,16 @@
                 </span>
             </div>
             <div class="col">
+                <% if(verified == false){%>
                 <span class="float-end">
-                    <a class="btn" href='/user/fundraisers/add'>Add Fundraiser</a>
+                    <button class="btn" disabled>Add Fundraiser</button>
                 </span>
+                <%}else{%>
+                    <span class="float-end">
+                        <a class="btn" href='/user/fundraisers/add'>Add Fundraiser</a>
+                </span>
+                    </span>
+                <%}%>
             </div>
             
         </div>

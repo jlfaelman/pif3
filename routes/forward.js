@@ -28,6 +28,7 @@ router.get('/', async(req,res)=>{
 // get page
 router.get('/page', async(req,res)=>{
     try {
+        
         const response = await fetch(`${process.env.DATABASE_URL}/forward/page/${req.query.id}`,
             {
                 method: 'GET',
@@ -35,15 +36,18 @@ router.get('/page', async(req,res)=>{
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
+        
         const getGoods = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/goods/${req.query.id}`)
+        
         const forward = await response.json();
         const goods = await getGoods.json();
-        console.log(goods.body[0])
+        
         res.render('forward-page', { 
             forward: forward.body.forward[0],
             user: forward.body.user[0],
             goods:goods.body[0],
             success:req.query.success,
+            
             moment:moment
          });
     }
@@ -54,7 +58,6 @@ router.get('/page', async(req,res)=>{
 })
 router.get('/page/donate',async(req,res)=>{
     try {
-       
         const getGoods = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/page/goods/${req.query.id}`)
         const goods = await getGoods.json();
         console.log(goods)
@@ -68,23 +71,6 @@ router.get('/page/donate',async(req,res)=>{
     }
 })
 
-router.get('/forwards', async (req, res) => {
-    try {
-        const response = await fetch(`${process.env.DATABASE_URL}/user/${req.query.id}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-            })
-        const fundraisings = await response.json();
-        res.render("fundraiser-dashboard", { data: fundraisings.body });
-    }
-    catch (e) {
-        res.render("fundraiser-dashboard", { data: undefined })
-        console.log(e);
-    }
-})
 // search
 router.get('/search',async(req,res)=>{
     try {

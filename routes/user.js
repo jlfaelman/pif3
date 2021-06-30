@@ -34,6 +34,13 @@ router.get('/verify', async (req, res) => {
 })
 router.get('/fundraisers', async (req, res) => {
     try {
+        const getVerified = await fetch(`${process.env.DATABASE_URL}/user/get/${req.query.id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        })
         const response = await fetch(`${process.env.DATABASE_URL}/fundraising/user/${req.query.id}`  ,
             {
                 method: 'GET',
@@ -42,7 +49,11 @@ router.get('/fundraisers', async (req, res) => {
                 },
             })
         const fundraisings = await response.json();
-        res.render("fundraiser-dashboard", { data: fundraisings.body });
+        const verified = await getVerified.json();
+        res.render("fundraiser-dashboard", { 
+            data: fundraisings.body,
+            verified:verified.body[0].Is_Verified
+        });
     }
     catch (e) {
         res.render("fundraiser-dashboard", { data: undefined })
@@ -215,6 +226,13 @@ router.get('/fundraisers/add/validation', async (req, res) => {
 
 router.get('/forwards', async (req, res) => {
     try {
+        const getVerified = await fetch(`${process.env.DATABASE_URL}/user/get/${req.query.id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+        })
         const response = await fetch(`${process.env.DATABASE_URL}/forward/dashboard/${req.query.id}`,
             {
                 method: 'GET',
@@ -222,8 +240,12 @@ router.get('/forwards', async (req, res) => {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
             })
+        const verified = await getVerified.json();
         const forward = await response.json();
-        res.render("forward-dashboard", { data: forward.body });
+        res.render("forward-dashboard", {
+            data: forward.body,
+            verified:verified.body[0].Is_Verified
+         });
     }
     catch (e) {
         res.render("forward-dashboard", { data: undefined })

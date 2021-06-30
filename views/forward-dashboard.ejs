@@ -2,6 +2,19 @@
 <%-include('_navbar'); %>
 <section class="my-5 py-5">
     <div class="container">
+        <% if(verified == false){%>
+        <section class="container " id='donate-success'>
+            <div class="card border-danger ">
+                <div class="card-body">
+                    <span class="text-danger">
+                        Your account needs to be verified to create forward!
+                    </span>
+                    <button type="button" class="btn-close float-end" onclick="dismiss();" aria-label="Close">
+                    </button>
+                </div>
+            </div>
+        </section>
+        <%}%>
         <div class="row border-bottom">
             <div class="col"> 
                 <span class="fs-1">
@@ -9,12 +22,19 @@
                 </span>
             </div>
             <div class="col">
+                <% if(verified == false){%>
                 <span class="float-end">
-                    <a class="btn" href='/user/forwards/add'>Add Forward</a>
+                    <button class="btn" disabled>Add Forward</button>
                 </span>
+                <%}else{%>
+                    <span class="float-end">
+                        <a class="btn" href='/user/forwards/add'>Add Forward</a>
+                    </span>
+                <%}%>
             </div>
             
         </div>
+        
         <div class="row">
             <% if(!data || data == undefined){ %>
             <% }else{ %>

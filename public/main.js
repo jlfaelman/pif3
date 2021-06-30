@@ -33,7 +33,8 @@ function validatePassword(password) {
 }
 function viewFundraisers() {
     const id = window.sessionStorage.getItem('ID');
-    window.location.href = `/user/fundraisers?id=${id}`;
+    const verified = window.sessionStorage.getItem('verified');
+    window.location.href = `/user/fundraisers?id=${id}&isVerified=${verified}`;
 }
 function viewForwards() {
     const id = window.sessionStorage.getItem('ID');
@@ -121,6 +122,7 @@ async function login() {
                         window.sessionStorage.setItem('status', 1);
                         window.sessionStorage.setItem('first', user.User_First);
                         window.sessionStorage.setItem('last', user.User_Last);
+                        window.sessionStorage.setItem('verified', user.Is_Verified);
                         window.location.href = "/";
                     }
                 }

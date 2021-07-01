@@ -1,5 +1,6 @@
 
 const db_url = "https://pif3-db-postgres.herokuapp.com"
+const base_url = "https://pif3.herokuapp.com/"
 function selectMethod() {
     const select = document.getElementById('method-select').value;
     if (select == 'financial') {
@@ -267,8 +268,7 @@ function donate() {
             //     platform = "gcash"
             // }
         }
-        // console.log(`http://localhost:3000/donate/verify?platform=${platform}&anonymous=${anonymous}&username=${username}&user=${userID}&fundraiser=${fundraiserID}&funding=${fundingID}&title=${title}&amount=${amount}&currency=${currency}`)
-        window.location.href = `http://localhost:3000/donate/verify?platform=${platform}&anonymous=${anonymous}&username=${username}&user=${userID}&fundraiser=${fundraiserID}&funding=${fundingID}&title=${title}&amount=${amount}&currency=${currency}`;
+     window.location.href = `${base_url}donate/verify?platform=${platform}&anonymous=${anonymous}&username=${username}&user=${userID}&fundraiser=${fundraiserID}&funding=${fundingID}&title=${title}&amount=${amount}&currency=${currency}`;
     }
 }
 

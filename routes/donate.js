@@ -104,7 +104,7 @@ router.get('/verify', async (req, res) => {
     const anon = req.query.anonymous;
 
     if (platform == 'paypal') {
-        const successURL = `${process.env.URL}/donate/paypal/success?amount=${amount}&currency=${currency}&user=${userID}&fund=${fundingID}&fundraiser=${fundraiserID}&type=${platform}&anon=${anon}`;
+        const successURL = `${process.env.URL}donate/paypal/success?amount=${amount}&currency=${currency}&user=${userID}&fund=${fundingID}&fundraiser=${fundraiserID}&type=${platform}&anon=${anon}`;
         const create_payment_json = {
             "intent": "sale",
             "experience_profile_id": "XP-4DFM-D9DF-RB7D-QLHV",
@@ -113,7 +113,7 @@ router.get('/verify', async (req, res) => {
             },
             "redirect_urls": {
                 "return_url": successURL,
-                "cancel_url": "${process.env.URL}/donate/cancel"
+                "cancel_url": `${process.env.URL}/donate/cancel`
             },
             "transactions": [{
                 "item_list": {
@@ -140,7 +140,6 @@ router.get('/verify', async (req, res) => {
             } else {
                 for (let i = 0; i < payment.links.length; i++) {
                     if (payment.links[i].rel === "approval_url") {
-                       
                         res.redirect(payment.links[i].href);
                     }
                 }

@@ -314,7 +314,7 @@ async function editForward() {
             description: description.value,
         }
         console.log(info)
-        const response = await fetch('`${db_url}/forward/page/edit',            //<-Change to DB
+        const response = await fetch(`${db_url}/forward/page/edit`,            //<-Change to DB
             {
                 method: 'POST',
                 headers: {
@@ -354,7 +354,7 @@ async function addComment() {
                 description: comment,
                 name: name,
             }
-            console.log(comment)
+            console.log(body)
             const addComment = await fetch(`${db_url}/comments/add`, {
                 method: 'POST',
                 headers: {

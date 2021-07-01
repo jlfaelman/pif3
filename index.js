@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 require('dotenv').config()
+const cors = require('cors')
 const port = process.env.PORT || 3000;
 const fundraiser = require('./routes/fundraiser');
 const donate = require('./routes/donate');
@@ -12,6 +13,7 @@ const forward = require('./routes/forward');
 app.set('view engine', 'ejs')
 app.use(express.static("public"));
 app.use(express.static("assets"));
+app.use(cors());
 // routes
 app.use('/fundraiser', fundraiser);
 app.use('/donate', donate);

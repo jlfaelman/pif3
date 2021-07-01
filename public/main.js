@@ -344,7 +344,7 @@ async function addComment() {
     const user = window.sessionStorage.getItem('ID');
     const name = window.sessionStorage.getItem('first') + " " + window.sessionStorage.getItem('last');
     if (comment == "") {
-        // window.location.href = `/fundraiser/page?id=${fundraiser}&success=1`
+        window.location.href = `/fundraiser/page?id=${fundraiser}&success=1`
     } else {
         try {
             const body = {
@@ -362,7 +362,7 @@ async function addComment() {
                 },
                 body: JSON.stringify(body)
             })
-            // window.location.href = `/fundraiser/page?id=${fundraiser}&success=1`
+            window.location.href = `/fundraiser/page?id=${fundraiser}&success=1`
         } catch (e) {
             throw e;
         }

@@ -13,7 +13,9 @@ const forward = require('./routes/forward');
 app.set('view engine', 'ejs')
 app.use(express.static("public"));
 app.use(express.static("assets"));
-app.use(cors());
+app.use(cors({
+    origin:process.env.URL
+}));
 // routes
 app.use('/fundraiser', fundraiser);
 app.use('/donate', donate);

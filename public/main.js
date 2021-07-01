@@ -288,7 +288,7 @@ async function editFundraiser() {
             description: description.value,
         }
         console.log(info)
-        const response = await fetch('`${db_url}/fundraising/edit',            //<-Change to DB
+        const response = await fetch(`${db_url}/fundraising/edit`,            //<-Change to DB
             {
                 method: 'POST',
                 headers: {

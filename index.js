@@ -14,7 +14,7 @@ app.set('view engine', 'ejs')
 app.use(express.static("public"));
 app.use(express.static("assets"));
 app.use(cors({
-    origin:process.env.URL
+    origin:"*"
 }));
 // routes
 app.use('/fundraiser', fundraiser);
